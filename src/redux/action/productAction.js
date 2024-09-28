@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_PRODUCTS, SET_ERROR, SET_LOADING } from "../actionTypes.js/contactActionTypes";
+import { GET_ALL_PRODUCTS, SET_ERROR, SET_LOADING } from "../actionTypes/productActionTypes";
 
 
 export const getProducts = ()=>async(dispatch)=>{

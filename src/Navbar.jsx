@@ -22,15 +22,23 @@ const Navbar = () => {
       padding="0.5rem"
       justifyContent="space-around"
       background={
-        "linear-gradient(90deg, rgba(110,13,156,1) 0%, rgba(130,169,213,1) 100%, rgba(0,40,255,1) 100%);"
+        "#81b1ce"
       }
+      borderRadius={"0 0 0.5rem 0.5rem"}
       fontSize={"larger"}
+      color={"white"}
     >
       {isLargerThan900 ? (
         <>
-          <Box  onClick={() => handleNavigation("/")}>Phonebook</Box>
+          <Box  onClick={() => handleNavigation("/")}>Home</Box>
           <Box display="flex" padding="0.5rem" justifyContent="space-around">
-            
+            <Box
+            onClick={()=>{
+              handleNavigation("/cart");
+            }}
+            >
+              Cart
+            </Box>
           </Box>
         </>
       ) : (
@@ -39,15 +47,23 @@ const Navbar = () => {
           width="100%"
           justifyContent="space-around"
           background={
-            "linear-gradient(90deg, rgba(110,13,156,1) 0%, rgba(130,169,213,1) 100%, rgba(0,40,255,1) 100%);"
+            "#81b1ce"
           }
+          color={"white"}
         >
-          <Box onClick={() => handleNavigation("/")}>Phonebook</Box>
+          <Box onClick={() => handleNavigation("/")}>Home</Box>
           <Box onClick={() => handleToggle()} cursor="pointer">
             <HamburgerIcon />
             {toggle ? (
               <Box>
-                
+                <Box
+            onClick={()=>{
+              handleNavigation("/cart");
+            }}
+            _hover={{cursor:"pointer"}}
+            >
+              Cart
+            </Box>
               </Box>
             ) : (
               <></>

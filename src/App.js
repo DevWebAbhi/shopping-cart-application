@@ -5,7 +5,7 @@ import { store } from './redux/store';
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom';
 import AllRoutes from './AllRoutes';
-import Navbar from './components/Navbar';
+import Navbar from './Navbar';
 function App() {
   return (
     <div className="App">
