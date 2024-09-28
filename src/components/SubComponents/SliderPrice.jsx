@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_SLIDER_MAX, SET_SLIDER_MIN } from '../../redux/actionTypes/productActionTypes';
 
-const SliderPrice = () => {
+const SliderPrice = ({width,filterbyPrice}) => {
   const selector = useSelector(store => store.productsReducer);
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const SliderPrice = () => {
   return (
 <>
 
-<Box width={"35%"}>
+<Box width={width?width:"35%"}>
     <Text textAlign={"center"}>Filter By Price</Text>
 <Box display="flex" flexDirection="row" gap="8" width="100%">
       <Box width={"49%"}>
@@ -24,7 +24,7 @@ const SliderPrice = () => {
           aria-label="slider-ex-6"
           defaultValue={selector.sliderMin || 0}
           min={0}
-          max={2500}
+          max={5000}
           onChange={(val) => dispatch({ type: SET_SLIDER_MIN, payload: val })}
         >
           <SliderMark {...labelStyles}>Start Price</SliderMark>
@@ -52,7 +52,7 @@ const SliderPrice = () => {
         <Slider
           aria-label="slider-ex-6"
           defaultValue={selector.sliderMax || 5000}
-          min={2501}
+          min={0}
           max={5000}
           onChange={(val) => dispatch({ type: SET_SLIDER_MAX, payload: val })}
         >
@@ -75,7 +75,7 @@ const SliderPrice = () => {
         </Slider>
       </Box>
       <Box>
-        <Button>Filter</Button>
+        <Button onClick={()=>filterbyPrice()}>Filter</Button>
       </Box>
     </Box>
 </Box>

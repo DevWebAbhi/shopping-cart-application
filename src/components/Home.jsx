@@ -3,6 +3,8 @@ import { Box, Card, Text,Divider,ButtonGroup,Button,Image,Stack,Heading,Skeleton
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../redux/action/productAction';
 import SliderPrice from './SubComponents/SliderPrice';
+import ModelFilter from './SubComponents/ModelFilter';
+import { GET_ALL_PRODUCTS, SET_LOADING } from '../redux/actionTypes/productActionTypes';
 const Home = () => {
 
   const [isLargerThan450] = useMediaQuery('(min-width: 450px)');
@@ -58,23 +60,79 @@ const handleCart = (e)=>{
   }
 }
 
+function filterbyPrice() {
+  let newData = [];
+  dispatch({ type: SET_LOADING, payload: true });
+
+  selector.products.forEach((e) => {
+    const price = Number(e.price);
+    const minPrice = Number(selector.sliderMin) || 0;
+    const maxPrice = Number(selector.sliderMax) || 5000;
+
+    if (price >= minPrice && price <= maxPrice) {
+      newData.push(e);
+    }
+  });
+
+  console.log(newData, selector.sliderMin, selector.sliderMax);
+
+  dispatch({ type: GET_ALL_PRODUCTS, payload: newData });
+  
+  setTimeout(() => {
+    dispatch({ type: SET_LOADING, payload: false });
+  }, 1500);
+}
+
+function sortByPrice(e) {
+  let newData = [];
+  dispatch({ type: SET_LOADING, payload: true });
+
+  if (e.target.value === "asc") {
+    newData = [...selector.products].sort((a, b) => {
+      return Number(a.price) - Number(b.price);
+    });
+  } else if (e.target.value === "desc") {
+    newData = [...selector.products].sort((a, b) => {
+      return Number(b.price) - Number(a.price);
+    });
+  }
+
+  dispatch({ type: GET_ALL_PRODUCTS, payload: newData });
+
+  setTimeout(() => {
+    dispatch({ type: SET_LOADING, payload: false });
+  }, 1500);
+}
+
+
+function resetFilter(){
+  dispatch(getProducts());
+}
+
+
 
   return (
    <>
    <Heading textAlign={"center"} >Products</Heading>
-   <Box width={"80%"} margin={"auto"} display={"flex"} justifyContent={"space-between"}>
-    <SliderPrice/>
+   {
+    isLargerThan1195?
+    <Box width={"80%"} margin={"auto"} display={"flex"} justifyContent={"space-between"} border={"1px solid"} borderColor={"rgba(160,160,255,0.5)"} borderRadius={"0.5rem"} padding={"0.3rem 1.5rem"}>
+    <SliderPrice filterbyPrice={filterbyPrice}/>
     <Box width={"max-content"} >
-      <Text>Filter by Name</Text>
-    <Select>
-    <option value='asc'>Filter by name ascending</option>
-    <option value='desc'>Filter by name decending</option>
+      <Text>Sort by price</Text>
+    <Select onChange={(e)=>{sortByPrice(e)}}>
+    <option value=''>Sort</option>
+    <option value='asc'>Sort by price ascending</option>
+    <option value='desc'>Sort by price decending</option>
     </Select>
     </Box>
     <Box paddingTop={"1rem"}>
-      <Button>Reset filters</Button>
+      <Button onClick={resetFilter} colorScheme='blue'>Reset filters</Button>
     </Box>
+   </Box>:<Box width={"max-content"} margin={"auto"}>
+   <ModelFilter filterbyPrice={filterbyPrice} sortByPrice={sortByPrice} resetFilter = {resetFilter}/>
    </Box>
+   }
    <Box margin={"auto"}
     width={"max-content"} display={"grid"} gridTemplateColumns={isLargerThan1195?"repeat(3,1fr)":isLargerThan810?"repeat(2,1fr)":"repeat(1,1fr)"} gridGap={"5"} mt={"1.5rem"}>
       {
