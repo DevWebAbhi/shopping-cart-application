@@ -16,6 +16,9 @@ Welcome to our shopping website, where finding what you need is quick and easy. 
 * Notifications: Toast messages for success/error feedback
 * Responsive Design
 
+## API Servies from Fake Store API
+
+* Getting products data link : https://fakestoreapi.com/products
 
 ## Functionalities
 
@@ -28,6 +31,6 @@ Welcome to our shopping website, where finding what you need is quick and easy. 
 ## Deployed Link
 -----------------
 
-* The deployed link is: 
+* The deployed link is: https://shopping-cart-application-theta.vercel.app/
 
 
