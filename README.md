@@ -4,7 +4,7 @@ Welcome to our shopping website, where finding what you need is quick and easy. 
 
 ### Presentation Video Link
 
-* Link: 
+* Link: https://drive.google.com/file/d/1rkgtamx34VzaxQMmW3ARE2yoLM97AHXd/view?usp=sharing
 
 ## Technologies Used
 --------------------
