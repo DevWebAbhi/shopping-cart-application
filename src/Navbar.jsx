@@ -30,9 +30,10 @@ const Navbar = () => {
     >
       {isLargerThan900 ? (
         <>
-          <Box  onClick={() => handleNavigation("/")}>Home</Box>
+          <Box _hover={{cursor:'pointer'}}  onClick={() => handleNavigation("/")}>Home</Box>
           <Box display="flex" padding="0.5rem" justifyContent="space-around">
             <Box
+            _hover={{cursor:'pointer'}}
             onClick={()=>{
               handleNavigation("/cart");
             }}
@@ -60,7 +61,7 @@ const Navbar = () => {
             onClick={()=>{
               handleNavigation("/cart");
             }}
-            _hover={{cursor:"pointer"}}
+            _hover={{cursor:'pointer'}}
             >
               Cart
             </Box>
