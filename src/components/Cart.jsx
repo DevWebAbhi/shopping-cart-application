@@ -4,20 +4,13 @@ import {
   Box,
   Card,
   Text,
-  Divider,
-  ButtonGroup,
   Button,
   Image,
   Stack,
   Heading,
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
   CardBody,
   CardFooter,
   useMediaQuery,
-  useToast,
-  Modal,
 } from "@chakra-ui/react";
 import {
   GET_ALL_CART,
@@ -27,9 +20,6 @@ import ModelPay from "./SubComponents/ModelPay";
 
 const Cart = () => {
   const [isLargerThan450] = useMediaQuery("(min-width: 450px)");
-  const [isLargerThan810] = useMediaQuery("(min-width: 810px)");
-  const [isLargerThan1195] = useMediaQuery("(min-width: 1195px)");
-  const toast = useToast();
   const selector = useSelector((store) => store.cartReducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -178,6 +168,7 @@ const Cart = () => {
                     <Button
                       variant="solid"
                       colorScheme="red"
+                      mt={"0.5rem"}
                       onClick={() => removeItem(e)}
                     >
                       Remove
